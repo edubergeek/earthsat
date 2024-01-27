@@ -104,23 +104,4 @@ class TLE:
     self.rv = icrs_v.radial_velocity * 'km/s'
 
 
-if __name__ == "__main__":
-  telescope = EarthLocation.of_site('ukirt')  
-  lines = ('1 47242U 20097A   24003.39838553 -0.00000081  00000-0  00000-0 0 9990',
-         '2 47242   2.9298  87.9077 0083413 251.6082 107.1585  0.95298003 10736'
-        )
-  t = Time('2024-01-04T04:24:00', format='isot', scale='utc')
-  tle = TLE()
-  teme = tle.TEME(lines, t)
-  #print(teme)
-    
-  tle.SatPos(telescope)
-  print('Position')
-  print('ALT: %5.5f  AZ:  %5.5f (deg)' %(tle.alt.value, tle.az.value))
-  print('RA:  %5.5f  DEC: %5.5f (deg)' %(tle.ra.value, tle.dec.value))
-  print('Motion')
-  print('ALT: %5.5f  AZ:  %5.5f (as/sec)' % (tle.pm_alt.value/1000, tle.pm_az.value/1000))
-  print('RA:  %5.5f  DEC: %5.5f (as/sec)' % (tle.pm_ra.value/1000, tle.pm_dec.value/1000))
-
-
 
